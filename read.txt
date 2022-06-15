@@ -1,0 +1,21 @@
+>>> from ormcalls.models import Blog
+>>> b = Blog(name='5 best places to visit this summer', tagline='This blog is about places')
+>>> b.save()
+>>> Blog.objects.all()
+<QuerySet [<Blog: Top 5 best Netflix Movies>, <Blog: Best coding practices>, <Blog: 5 best places to visit this summer>]>
+>>> Blog.objects.filter(tagline__startswith='This')
+<QuerySet [<Blog: Best coding practices>, <Blog: 5 best places to visit this summer>]>
+>>> Blog.objects.filter(tagline__endswith='netflix') 
+<QuerySet [<Blog: Top 5 best Netflix Movies>]>
+>>> Blog.objects.filter(name= '5 best places to visit this summer') 
+<QuerySet [<Blog: 5 best places to visit this summer>]>
+>>> Blog.objects.filter(tagline__contains='blog')                   
+<QuerySet [<Blog: Top 5 best Netflix Movies>, <Blog: Best coding practices>, <Blog: 5 best places to visit this summer>]>
+>>> Blog.objects.filter(tagline__contains='geek') 
+<QuerySet [<Blog: Best coding practices>]>
+>>> Blog.objects.filter(tagline__iexact='blog is related to netflix') 
+<QuerySet [<Blog: Top 5 best Netflix Movies>]>
+
+>>> 
+>>> Blog.objects.filter(tagline__iexact='Blog is related to NETFLIX') 
+<QuerySet [<Blog: Top 5 best Netflix Movies>]>
